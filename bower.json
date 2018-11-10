@@ -1,0 +1,25 @@
+{
+  "name": "resume-app",
+  "description": "Resume Application - front end",
+  "main": "gulpfile.js",
+  "authors": [
+    "Stefano Celentano"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "/app/bower_components"
+  ],
+  "dependencies": {
+    "angular": "^1.7.5",
+    "angular-route": "^1.7.5",
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1"
+  }
+}

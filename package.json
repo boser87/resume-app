@@ -1,0 +1,23 @@
+{
+  "name": "resume-app",
+  "version": "1.0.0",
+  "description": "Resume Application",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stefano Celentano",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.8.4",
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-connect": "^5.6.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-uglify": "^3.0.1",
+    "jshint": "^2.9.6",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
