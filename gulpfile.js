@@ -48,13 +48,11 @@ gulp.task('default',
 );
 
 // dist
-
 gulp.task('dist',
     ['clean', 'browserify-backoffice', 'copy-bower-components', 'copy-html-files-backoffice']
 );
 
 // connecting tasks
-
 gulp.task('connect', function () {
     connect.server({
         root: 'app/',
@@ -67,4 +65,13 @@ gulp.task('connect-dist', function () {
         root: 'dist/',
         port: 9000
     });
+});
+
+// watch
+gulp.task("watch", function() {
+    // Watch our scripts
+    gulp.watch(
+        ['app/backoffice/**/*.js'],
+        ['browserify-backoffice']
+    );
 });
