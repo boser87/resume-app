@@ -1,6 +1,6 @@
 var angular = require('angular');
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+require('bootstrap/dist/css/bootstrap.css');
 
 angular.module('SampleApp', [require('angular-route')])
     .config(['$locationProvider', '$routeProvider',

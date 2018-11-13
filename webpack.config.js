@@ -1,6 +1,9 @@
 var webpack = require('webpack');
 var path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var HtmlWebPackPlugin = require("html-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 
 
 module.exports = {
@@ -43,6 +46,14 @@ module.exports = {
                     },
                     "css-loader"
                 ]
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader"
+                    }
+                ]
             }
         ]
     },
@@ -50,6 +61,14 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "css/[name].css",
             chunkFilename: "css/[id].css"
-        })
+        }),
+        new HtmlWebPackPlugin({
+            template: "./index.html",
+            filename: "./index.html"
+        }),
+        new CopyWebpackPlugin([{
+            from: '**/*.html',
+            force: true
+        }])
     ]
 };
