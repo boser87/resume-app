@@ -1,8 +1,8 @@
-'use strict';
+var angular = require('angular');
 
-var function1Component = require('./function1/controller1')
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-module.exports = angular.module('SampleApp', ['ngRoute'])
+angular.module('SampleApp', [require('angular-route')])
     .config(['$locationProvider', '$routeProvider',
         function($locationProvider, $routeProvider) {
             $locationProvider.hashPrefix('!');
@@ -16,5 +16,6 @@ module.exports = angular.module('SampleApp', ['ngRoute'])
                     redirectTo: '/'
                 });
         }
-    ])
-    .controller('MainController', function1Component);
+    ]);
+
+require('./function1');

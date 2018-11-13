@@ -1,6 +1,5 @@
-'use strict';
-var component = function($scope) {
+function MainController($scope) {
     $scope.test = "Testing...";
 };
 
-module.exports = component;
+module.exports = MainController;
