@@ -1,21 +1,36 @@
-var angular = require('angular');
+(function() {
+    'use strict';
+    var angular = require('angular');
 
-require('bootstrap/dist/css/bootstrap.css');
+    require('bootstrap/dist/css/bootstrap.css');
+    require('angular-route');
+    require('angular-resource');
+    require('restangular');
 
-angular.module('SampleApp', [require('angular-route')])
-    .config(['$locationProvider', '$routeProvider',
-        function($locationProvider, $routeProvider) {
-            $locationProvider.hashPrefix('!');
-            // routes
-            $routeProvider
-                .when("/", {
-                    templateUrl: "./function1/partial1.html",
-                    controller: "MainController"
-                })
-                .otherwise({
-                    redirectTo: '/'
-                });
-        }
-    ]);
+    angular.module('SampleApp', ['ngRoute', 'ngResource', 'restangular'])
+        .config(['$locationProvider', '$routeProvider',
+            function($locationProvider, $routeProvider) {
+                $locationProvider.hashPrefix('!');
+                // routes
+                $routeProvider
+                    .when("/", {
+                        redirectTo: '/resumes'
+                    })
+                    .when("/resumes", {
+                        templateUrl: "./resume/resumes-list.html",
+                        controller: "ResumesListController as resumesList"
+                    })
+                    .when("/resume/:id/edit", {
+                        templateUrl: "./resume/edit-resume.html",
+                        controller: "EditResumeController as editResume"
+                    })
+                    .otherwise({
+                        redirectTo: '/resumes'
+                    });
+            }
+        ]);
 
-require('./function1');
+    require('./resume');
+    require('./common');
+
+})();

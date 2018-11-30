@@ -1,0 +1,27 @@
+<pre>{{editResume.resume | json}}</pre>
+
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.name" value="" id="name">
+    </div>
+    <div class="form-group">
+        <label for="name">Description</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.description" value="" id="description">
+    </div>
+    <div class="form-group">
+        <label for="name">Created for</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.createdFor" value="Company X" id="createdFor">
+    </div>
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input class="form-control" type="date" ng-model="editResume.resume.date" value="2011-08-19" id="date">
+    </div>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="checkbox" class="form-check-input">
+            Check me out
+        </label>
+    </div>
+    <button ng-click="editResume.onSubmit(editResume.resume)" type="submit" class="btn btn-primary">Submit</button>
+</form>

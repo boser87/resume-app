@@ -17,7 +17,6 @@ module.exports = {
         filename: 'js/[name].js'
     },
     optimization: {
-        minimize: false,
         splitChunks: {
             cacheGroups: {
                 vendor: {
