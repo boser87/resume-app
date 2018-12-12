@@ -11,7 +11,6 @@
         .config(['$locationProvider', '$routeProvider',
             function($locationProvider, $routeProvider) {
                 $locationProvider.hashPrefix('!');
-                // routes
                 $routeProvider
                     .when("/", {
                         redirectTo: '/resumes'
