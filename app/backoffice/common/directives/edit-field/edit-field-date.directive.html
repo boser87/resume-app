@@ -1,0 +1,7 @@
+<input string-to-date
+       type="date"
+       class="form-control"
+       ng-model="vm.editValue"
+       ng-change="vm.valueChanged(vm, '{{vm.editValue}}')"
+       ng-if="vm.editMode"/>
+<span ng-if="!vm.editMode">{{vm.editValue | date : 'dd/MM/yyyy'}}</span>

@@ -30,6 +30,8 @@
         ]);
 
     require('./resume');
-    require('./common');
+    require('./common/services/data-repository');
+    require('./common/directives/edit-field');
+    require('./common/directives/date');
 
 })();

@@ -10,11 +10,14 @@
     function editField() {
         var directive = {
             restrict: 'A',
-            templateUrl: '/backoffice/resume/edit-field.directive.html',
+            templateUrl: function(elem,attrs) {
+                return attrs.editType ? '/backoffice/resume/edit-field-' + attrs.editType + '.directive.html' : '/backoffice/resume/edit-field-text.directive.html'
+            },
             scope: {
                 editMode: '=',
                 editObject: '=',
-                editFieldName: '='
+                editFieldName: '=',
+                editType: '=?'
             },
             controller: function () {
 
@@ -23,6 +26,9 @@
 
                 this.$onInit = function() {
                     var vm = this;
+
+                    vm.editType = vm.editType || 'text';
+
                     vm.editValue = vm.editObject.data[vm.editFieldName];
                     vm.valueChanged = function(newValue, oldValue) {
                         vm.editObject.data[vm.editFieldName] = newValue.editValue;

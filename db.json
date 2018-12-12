@@ -4,13 +4,15 @@
       "id": "1",
       "name": "new value 1jj",
       "description": "new value 2 4",
-      "createdFor": "company X 1",
-      "date": ""
+      "createdFor": "company X 1eee",
+      "date": "2018-12-21T22:00:00.000Z"
     },
     {
       "id": "2",
       "name": "new value 3jiojioj",
-      "description": "4 444"
+      "description": "4 444",
+      "date": "2018-12-15T22:00:00.000Z",
+      "createdFor": "whatever"
     }
   ],
   "details": [

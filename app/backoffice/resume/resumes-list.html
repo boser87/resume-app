@@ -5,6 +5,8 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
+        <th>Created for</th>
+        <th>Date</th>
         <th></th>
     </tr>
     </thead>
@@ -15,6 +17,12 @@
         </td>
         <td>
             <div re-edit-field edit-object="resumeRow" edit-field-name="'description'" edit-mode="resumeRow.editMode"></div>
+        </td>
+        <td>
+            <div re-edit-field edit-object="resumeRow" edit-field-name="'createdFor'" edit-mode="resumeRow.editMode"></div>
+        </td>
+        <td>
+            <div re-edit-field edit-type="date" edit-object="resumeRow" edit-field-name="'date'" edit-mode="resumeRow.editMode"></div>
         </td>
         <td>
             <button class="btn btn-xs btn-primary" ng-click="resumesList.startEditing(resumeRow)" ng-if="!resumeRow.editMode">Edit</button>
