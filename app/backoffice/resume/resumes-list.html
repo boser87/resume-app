@@ -11,11 +11,12 @@
     <tbody>
     <tr ng-repeat="resumeRow in resumesList.resumesRows">
         <td>
-            <input type="text" class="form-control" ng-model="resumeRow.data.name" ng-if="resumeRow.editMode"/>
-            <span ng-if="!resumeRow.editMode">{{resumeRow.data.name}}</span></td>
+            <div re-edit-field edit-object="resumeRow" edit-field="'name'" edit-mode="resumeRow.editMode"></div>
+        </td>
         <td>
             <input type="text" class="form-control" ng-model="resumeRow.data.description" ng-if="resumeRow.editMode"/>
-            <span ng-if="!resumeRow.editMode">{{resumeRow.data.description}}</span></td>
+            <span ng-if="!resumeRow.editMode">{{resumeRow.data.description}}</span>
+        </td>
         <td>
             <button class="btn btn-xs btn-primary" ng-click="resumesList.startEditing(resumeRow)" ng-if="!resumeRow.editMode">Edit</button>
             <span ng-if="resumeRow.editMode">

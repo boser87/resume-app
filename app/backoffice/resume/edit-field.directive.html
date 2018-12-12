@@ -1,0 +1,3 @@
+<input type="text" class="form-control" ng-model="myVm.editValue" ng-change="valueChanged(myVm, '{{editValue}}')"
+       ng-if="editMode"/>
+<span ng-if="!editMode">{{myVm.editValue}}</span>
