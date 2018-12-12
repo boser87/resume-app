@@ -2,15 +2,15 @@
   "resumes": [
     {
       "id": "1",
-      "name": "new value 1",
-      "description": "new value 2",
+      "name": "new value 1jj",
+      "description": "new value 2 4",
       "createdFor": "company X 1",
       "date": ""
     },
     {
       "id": "2",
-      "name": "new value 3",
-      "description": "4"
+      "name": "new value 3jiojioj",
+      "description": "4 444"
     }
   ],
   "details": [

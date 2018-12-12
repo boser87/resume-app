@@ -1,30 +1,39 @@
 (function() {
     'use strict'
 
+    /**
+     * Interesting how I could not simply pass the, for instance, string value from calling resume-list the object to
+     * this directive but I had to pass the whole object and also the name of the property I wanted to change
+     * https://stackoverflow.com/questions/29265310/angularjs-directive-two-way-data-binding-not-working-when-observing-boolean
+     */
+
     function editField() {
         var directive = {
             restrict: 'A',
             templateUrl: '/backoffice/resume/edit-field.directive.html',
             scope: {
+                editMode: '=',
                 editObject: '=',
-                editField: '=',
-                editMode: '='
+                editFieldName: '='
             },
-            controller: ExampleController
+            controller: function () {
+
+                // Reason why we need onInit:
+                // https://docs.angularjs.org/api/ng/service/$compile#-bindtocontroller-
+
+                this.$onInit = function() {
+                    var vm = this;
+                    vm.editValue = vm.editObject.data[vm.editFieldName];
+                    vm.valueChanged = function(newValue, oldValue) {
+                        vm.editObject.data[vm.editFieldName] = newValue.editValue;
+                    }
+                };
+            },
+            bindToController: true, // This is useful so I don't have to inject scope in the directive's controller
+            controllerAs: 'vm'
         };
 
         return directive;
-    }
-
-    ExampleController.$inject = ['$scope'];
-
-    function ExampleController($scope) {
-        //$scope.editValue = 'whatever'; // TODO: do I have to inject scope in directive's controller?
-        $scope.myVm = {};
-        $scope.myVm.editValue = $scope.editObject.data[$scope.editField];
-        $scope.valueChanged = function(newValue, oldValue) {
-            $scope.editObject.data[$scope.editField] = newValue.editValue; // TODO: find good names for these variables
-        }
     }
 
     module.exports = editField;
