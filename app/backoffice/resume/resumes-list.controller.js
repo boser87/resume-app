@@ -1,18 +1,15 @@
 (function() {
     'use strict';
 
-    function ResumesListController(resumeDataSourceService) {
+    function ResumesListController(resumeDataSourceService, $filter) {
         var vm = this;
 
-        resumeDataSourceService.getAllResumes(function(resumes) { // wrap in activate() function
-            var resumeRows = [];
+        function init() {
+            initNewResume();
+            loadResumes();
+        }
 
-            resumes.forEach(function(resume) {
-                resumeRows.push(ResumeRow(resume));
-            });
-
-            vm.resumesRows = resumeRows;
-        })
+        init();
 
         function ResumeRow(resumeData) {
             var obj = {};
@@ -22,6 +19,8 @@
 
             return obj;
         }
+
+        // TODO: these public methods should be more visible like John Papa says
 
         vm.saveResume = function(resume) {
             resumeDataSourceService.saveResume(resume.data,
@@ -37,6 +36,33 @@
 
         vm.cancelEditing = function(resumeRow) {
             resumeRow.editMode = false;
+        }
+
+        vm.createNewResume = function() {
+            resumeDataSourceService.createResume(vm.newResume, function(response) {
+                console.log(response);
+                loadResumes();
+                initNewResume();
+            });
+        }
+
+        // Private methods
+
+        function loadResumes() {
+            resumeDataSourceService.getAllResumes(function(resumes) { // wrap in activate() function
+                var resumeRows = [];
+
+                resumes.forEach(function(resume) {
+                    resumeRows.push(ResumeRow(resume));
+                });
+
+                vm.resumesRows = resumeRows;
+            })
+        }
+
+        function initNewResume() {
+            vm.newResume = {};
+            vm.newResume.date = new Date();
         }
     }
 

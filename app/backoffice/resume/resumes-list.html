@@ -32,7 +32,30 @@
             </span>
         </td>
     </tr>
-    </tbody>
+    <tr ng-form="newResumeForm" novalidate>
+        <td>
+            <input type="text" class="form-control" ng-model="resumesList.newResume.name" name="name"
+                   required />
+        </td>
+        <td>
+            <input type="text" class="form-control" ng-model="resumesList.newResume.description"
+                   name="description" required />
+        </td>
+        <td>
+            <input type="text" class="form-control" ng-model="resumesList.newResume.createdFor"
+                   name="createdFor"/>
+        </td>
+        <td>
+            <input type="date" class="form-control" ng-model="resumesList.newResume.date" name="date"
+                   required />
+        </td>
+        <td>
+            <button type="submit" class="btn btn-xs btn-primary"
+                    ng-disabled="newResumeForm.$invalid"
+                    ng-click="resumesList.createNewResume()">New
+                resume</button>
+        </td>
+    </tr>
 </table>
 
 <pre>{{resumesList.resumesRows|json}}</pre>

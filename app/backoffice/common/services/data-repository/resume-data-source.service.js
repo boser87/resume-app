@@ -5,9 +5,12 @@
 
         Restangular.setBaseUrl(config.resumeDataSource.baseUrl);
 
+        var baseResumes = Restangular.all('resumes');
+
         var service = {
             getAllResumes: getAllResumes,
-            saveResume: saveResume
+            saveResume: saveResume,
+            createResume: createResume
         };
 
         return service;
@@ -15,7 +18,11 @@
         //
 
         function getAllResumes(successCallback) {
-            Restangular.all('resumes').getList().then(successCallback, handleError)
+            baseResumes.getList().then(successCallback, handleError)
+        }
+
+        function createResume(resume, successCallBack) {
+            baseResumes.post(resume).then(successCallBack, handleError);
         }
 
         function saveResume(resume, successCallback) {
