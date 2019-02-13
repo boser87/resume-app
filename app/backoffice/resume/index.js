@@ -10,5 +10,6 @@
         .controller('EditResumeController', editResumeController)
         .controller('ResumesListController', resumesListController);
 
-    editResumeController.$inject = ['resumeDataSourceService', '$filter'];
+    editResumeController.$inject = ['resumeDataSourceService', '$route', '$filter', '$location'];
+    resumesListController.$inject = ['resumeDataSourceService', '$location'];
 })();

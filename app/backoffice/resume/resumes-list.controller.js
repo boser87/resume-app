@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function ResumesListController(resumeDataSourceService, $filter) {
+    function ResumesListController(resumeDataSourceService, $location) {
         var vm = this;
 
         function init() {
@@ -46,10 +46,15 @@
             });
         }
 
+        vm.goToDetails = function(resumeRow) {
+            debugger
+            $location.path('/resume/' + resumeRow.data.id + '/edit');
+        }
+
         // Private methods
 
         function loadResumes() {
-            resumeDataSourceService.getAllResumes(function(resumes) { // wrap in activate() function
+            resumeDataSourceService.getAllResumes(function(resumes) {
                 var resumeRows = [];
 
                 resumes.forEach(function(resume) {

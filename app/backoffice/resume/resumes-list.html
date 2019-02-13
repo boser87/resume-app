@@ -8,6 +8,7 @@
         <th>Created for</th>
         <th>Date</th>
         <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -30,6 +31,10 @@
                     <button type="submit" class="btn btn-xs btn-success" ng-click="resumesList.saveResume(resumeRow)">Save</button>
                     <button type="button" class="btn btn-xs btn-default" ng-click="resumesList.cancelEditing(resumeRow)">Cancel</button>
             </span>
+        </td>
+        <td>
+            <button class="btn btn-xs btn-primary" ng-click="resumesList.goToDetails(resumeRow)">Details
+            </button>
         </td>
     </tr>
     <tr ng-form="newResumeForm" novalidate>

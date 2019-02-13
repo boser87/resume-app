@@ -69,5 +69,6 @@ module.exports = {
             from: '**/*.html',
             force: true
         }])
-    ]
+    ],
+    mode: "production"
 };

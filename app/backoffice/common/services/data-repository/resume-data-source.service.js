@@ -10,12 +10,17 @@
         var service = {
             getAllResumes: getAllResumes,
             saveResume: saveResume,
-            createResume: createResume
+            createResume: createResume,
+            getResume: getResume
         };
 
         return service;
 
         //
+
+        function getResume(id, successCallback) {
+            Restangular.one('resumes', id).get().then(successCallback, handleError)
+        }
 
         function getAllResumes(successCallback) {
             baseResumes.getList().then(successCallback, handleError)
