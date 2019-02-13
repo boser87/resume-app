@@ -11,7 +11,7 @@
         var directive = {
             restrict: 'A',
             templateUrl: function(elem,attrs) {
-                return attrs.editType ? '/backoffice/resume/edit-field-' + attrs.editType + '.directive.html' : '/backoffice/resume/edit-field-text.directive.html'
+                return attrs.editType ? '/backoffice/common/directives/edit-field/edit-field-' + attrs.editType + '.directive.html' : '/backoffice/common/directives/edit-field/edit-field-text.directive.html'
             },
             scope: {
                 editMode: '=',

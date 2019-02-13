@@ -1,0 +1,15 @@
+th {
+	font-weight: bold;
+	padding: 1em 0 0.25em 0;
+	border-bottom: 3px solid black;
+	text-align: left;
+}
+
+td {
+	text-align: left;
+	height: 100%;
+}
+
+.center-text {
+	text-align: center;
+}

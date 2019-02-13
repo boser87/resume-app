@@ -1,0 +1,21 @@
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.name" value="" id="name">
+    </div>
+    <div class="form-group">
+        <label for="name">Label</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.label" value="" id="description">
+    </div>
+    <div class="form-group">
+        <label for="name">Email</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.email" value="Company X" id="createdFor">
+    </div>
+    <div class="form-group">
+        <label for="date">Phone</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.phone" value="+329 ..." id="date">
+    </div>
+    <button ng-click="editResume.onSubmit(editResume.resume)" type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<pre>{{editResume.resume | json}}</pre>

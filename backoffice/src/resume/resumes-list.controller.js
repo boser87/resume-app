@@ -47,7 +47,6 @@
         }
 
         vm.goToDetails = function(resumeRow) {
-            debugger
             $location.path('/resume/' + resumeRow.data.id + '/edit');
         }
 

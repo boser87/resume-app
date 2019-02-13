@@ -1,0 +1,66 @@
+<h2>Resumes list</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Created for</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="resumeRow in resumesList.resumesRows">
+        <td>
+            <div re-edit-field edit-object="resumeRow" edit-field-name="'name'" edit-mode="resumeRow.editMode"></div>
+        </td>
+        <td>
+            <div re-edit-field edit-object="resumeRow" edit-field-name="'description'" edit-mode="resumeRow.editMode"></div>
+        </td>
+        <td>
+            <div re-edit-field edit-object="resumeRow" edit-field-name="'createdFor'" edit-mode="resumeRow.editMode"></div>
+        </td>
+        <td>
+            <div re-edit-field edit-type="date" edit-object="resumeRow" edit-field-name="'date'" edit-mode="resumeRow.editMode"></div>
+        </td>
+        <td>
+            <button class="btn btn-xs btn-primary" ng-click="resumesList.startEditing(resumeRow)" ng-if="!resumeRow.editMode">Edit</button>
+            <span ng-if="resumeRow.editMode">
+                    <button type="submit" class="btn btn-xs btn-success" ng-click="resumesList.saveResume(resumeRow)">Save</button>
+                    <button type="button" class="btn btn-xs btn-default" ng-click="resumesList.cancelEditing(resumeRow)">Cancel</button>
+            </span>
+        </td>
+        <td>
+            <button class="btn btn-xs btn-primary" ng-click="resumesList.goToDetails(resumeRow)">Details
+            </button>
+        </td>
+    </tr>
+    <tr ng-form="newResumeForm" novalidate>
+        <td>
+            <input type="text" class="form-control" ng-model="resumesList.newResume.name" name="name"
+                   required />
+        </td>
+        <td>
+            <input type="text" class="form-control" ng-model="resumesList.newResume.description"
+                   name="description" required />
+        </td>
+        <td>
+            <input type="text" class="form-control" ng-model="resumesList.newResume.createdFor"
+                   name="createdFor"/>
+        </td>
+        <td>
+            <input type="date" class="form-control" ng-model="resumesList.newResume.date" name="date"
+                   required />
+        </td>
+        <td>
+            <button type="submit" class="btn btn-xs btn-primary"
+                    ng-disabled="newResumeForm.$invalid"
+                    ng-click="resumesList.createNewResume()">New
+                resume</button>
+        </td>
+    </tr>
+</table>
+
+<pre>{{resumesList.resumesRows|json}}</pre>

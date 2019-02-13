@@ -1,13 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
-var MiniCssExtractPlugin = require("mini-css-extract-plugin");
-var HtmlWebPackPlugin = require("html-webpack-plugin");
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-
-
+let path = require('path');
+let MiniCssExtractPlugin = require("mini-css-extract-plugin");
+let HtmlWebPackPlugin = require("html-webpack-plugin");
+let CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    context: path.resolve(__dirname, 'app/backoffice'),
+    context: path.resolve(__dirname, 'src'),
     entry: {
         app: './app.js',
         vendor: ['angular', 'angular-route', 'jquery']
@@ -70,5 +67,5 @@ module.exports = {
             force: true
         }])
     ],
-    mode: "production"
+    mode: "development"
 };
