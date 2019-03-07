@@ -5,6 +5,19 @@
 
         Restangular.setBaseUrl(config.resumeDataSource.baseUrl);
 
+        Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+            let extractedData = data;
+            if (operation === "getList" && what === "resumes") {
+                extractedData = data._embedded.resumes;
+            }
+            return extractedData;
+        });
+
+        // Using self link for self reference resources
+        Restangular.setRestangularFields({
+            selfLink: '_links.self.href'
+        });
+
         var baseResumes = Restangular.all('resumes');
 
         var service = {

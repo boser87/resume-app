@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function ResumesListController(resumeDataSourceService, $location) {
+    function ResumesListController(resumeDataSourceService, $location, urlUtils) {
         var vm = this;
 
         function init() {
@@ -47,7 +47,7 @@
         }
 
         vm.goToDetails = function(resumeRow) {
-            $location.path('/resume/' + resumeRow.data.id + '/edit');
+            $location.path(urlUtils.getRelativePath(resumeRow.data._links.resume.href));
         }
 
         // Private methods

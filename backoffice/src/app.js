@@ -19,7 +19,7 @@
                         templateUrl: "./resume/resumes-list.html",
                         controller: "ResumesListController as resumesList"
                     })
-                    .when("/resume/:id/edit", {
+                    .when("/resumes/:id", {
                         templateUrl: "./resume/edit-resume.html",
                         controller: "EditResumeController as editResume"
                     })
@@ -29,6 +29,7 @@
             }
         ]);
 
+    require('./common/services/url');
     require('./resume');
     require('./common/services/data-repository');
     require('./common/directives/edit-field');
