@@ -3,6 +3,7 @@ app/lib/*
 node_modules
 npm-debug.log*
 
-dist/*
+backoffice/dist
+frontend/dist
 
 .idea/

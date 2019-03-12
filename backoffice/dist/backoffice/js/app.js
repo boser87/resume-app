@@ -209,6 +209,50 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPAC
 
 /***/ }),
 
+/***/ "../node_modules/resume-app-data-source/src/app.js":
+/*!*********************************************************!*\
+  !*** ../node_modules/resume-app-data-source/src/app.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("(function() {\n    'use strict';\n    let angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n\n    __webpack_require__(/*! restangular */ \"../node_modules/restangular/dist/restangular.js\");\n\n    angular.module( 'ResumeAppDataSource', ['restangular']);\n\n    __webpack_require__(/*! ./common/services/data-source */ \"../node_modules/resume-app-data-source/src/common/services/data-source/index.js\");\n})();\n\n\n//# sourceURL=webpack:///../node_modules/resume-app-data-source/src/app.js?");
+
+/***/ }),
+
+/***/ "../node_modules/resume-app-data-source/src/common/services/data-source/index.js":
+/*!***************************************************************************************!*\
+  !*** ../node_modules/resume-app-data-source/src/common/services/data-source/index.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("(function() {\n    'use strict';\n\n    let angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    let config = __webpack_require__(/*! ./resume-data-source.config */ \"../node_modules/resume-app-data-source/src/common/services/data-source/resume-data-source.config.js\");\n    let resumeDataSourceService = __webpack_require__(/*! ./resume-data-source.service */ \"../node_modules/resume-app-data-source/src/common/services/data-source/resume-data-source.service.js\");\n\n    angular.module('ResumeAppDataSource')\n        .constant('config', config)\n        .factory('resumeDataSourceService', resumeDataSourceService);\n\n    __webpack_require__(/*! restangular */ \"../node_modules/restangular/dist/restangular.js\");\n\n    resumeDataSourceService.$inject = ['Restangular', 'config'];\n\n})();\n\n\n//# sourceURL=webpack:///../node_modules/resume-app-data-source/src/common/services/data-source/index.js?");
+
+/***/ }),
+
+/***/ "../node_modules/resume-app-data-source/src/common/services/data-source/resume-data-source.config.js":
+/*!***********************************************************************************************************!*\
+  !*** ../node_modules/resume-app-data-source/src/common/services/data-source/resume-data-source.config.js ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("(function() {\n    'use strict';\n\n    module.exports = {\n        resumeDataSource: {\n            baseUrl: \"http://localhost:3001\"\n        }\n    };\n\n})();\n\n\n//# sourceURL=webpack:///../node_modules/resume-app-data-source/src/common/services/data-source/resume-data-source.config.js?");
+
+/***/ }),
+
+/***/ "../node_modules/resume-app-data-source/src/common/services/data-source/resume-data-source.service.js":
+/*!************************************************************************************************************!*\
+  !*** ../node_modules/resume-app-data-source/src/common/services/data-source/resume-data-source.service.js ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("(function() {\n  'use strict';\n\n    function resumeDataSourceService(Restangular, config) {\n\n        Restangular.setBaseUrl(config.resumeDataSource.baseUrl);\n\n        Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {\n            let extractedData = data;\n            if (operation === \"getList\" && what === \"resumes\") {\n                extractedData = data._embedded.resumes;\n            }\n            return extractedData;\n        });\n\n        // Using self link for self reference resources\n        Restangular.setRestangularFields({\n            selfLink: '_links.self.href'\n        });\n\n        var baseResumes = Restangular.all('resumes');\n\n        var service = {\n            getAllResumes: getAllResumes,\n            saveResume: saveResume,\n            createResume: createResume,\n            getResume: getResume\n        };\n\n        return service;\n\n        //\n\n        function getResume(id, successCallback) {\n            Restangular.one('resumes', id).get().then(successCallback, handleError)\n        }\n\n        function getAllResumes(successCallback) {\n            baseResumes.getList().then(successCallback, handleError)\n        }\n\n        function createResume(resume, successCallBack) {\n            baseResumes.post(resume).then(successCallBack, handleError);\n        }\n\n        function saveResume(resume, successCallback) {\n            resume.save().then(successCallback, handleError);\n        }\n\n        function handleError(response) {\n            console.log(\"Error with status code\", response.status);\n        }\n    }\n\n    module.exports = resumeDataSourceService;\n\n})();\n\n\n//# sourceURL=webpack:///../node_modules/resume-app-data-source/src/common/services/data-source/resume-data-source.service.js?");
+
+/***/ }),
+
 /***/ "../node_modules/webpack/buildin/global.js":
 /*!*************************************************!*\
   !*** ../node_modules/webpack/buildin/global.js ***!
@@ -238,7 +282,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("(function() {\n    'use strict';\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n\n    __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ \"../node_modules/bootstrap/dist/css/bootstrap.css\");\n    __webpack_require__(/*! angular-route */ \"../node_modules/angular-route/index.js\");\n    __webpack_require__(/*! angular-resource */ \"../node_modules/angular-resource/index.js\");\n    __webpack_require__(/*! restangular */ \"../node_modules/restangular/dist/restangular.js\");\n\n    angular.module('SampleApp', ['ngRoute', 'ngResource', 'restangular'])\n        .config(['$locationProvider', '$routeProvider',\n            function($locationProvider, $routeProvider) {\n                $locationProvider.hashPrefix('!');\n                $routeProvider\n                    .when(\"/\", {\n                        redirectTo: '/resumes'\n                    })\n                    .when(\"/resumes\", {\n                        templateUrl: \"./resume/resumes-list.html\",\n                        controller: \"ResumesListController as resumesList\"\n                    })\n                    .when(\"/resumes/:id\", {\n                        templateUrl: \"./resume/edit-resume.html\",\n                        controller: \"EditResumeController as editResume\"\n                    })\n                    .otherwise({\n                        redirectTo: '/resumes'\n                    });\n            }\n        ]);\n\n    __webpack_require__(/*! ./common/services/url */ \"./common/services/url/index.js\");\n    __webpack_require__(/*! ./resume */ \"./resume/index.js\");\n    __webpack_require__(/*! ./common/services/data-repository */ \"./common/services/data-repository/index.js\");\n    __webpack_require__(/*! ./common/directives/edit-field */ \"./common/directives/edit-field/index.js\");\n    __webpack_require__(/*! ./common/directives/date */ \"./common/directives/date/index.js\");\n\n})();\n\n\n//# sourceURL=webpack:///./app.js?");
+eval("(function() {\n    'use strict';\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n\n    __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ \"../node_modules/bootstrap/dist/css/bootstrap.css\");\n    __webpack_require__(/*! angular-route */ \"../node_modules/angular-route/index.js\");\n    __webpack_require__(/*! angular-resource */ \"../node_modules/angular-resource/index.js\");\n    __webpack_require__(/*! restangular */ \"../node_modules/restangular/dist/restangular.js\");\n    __webpack_require__(/*! resume-app-data-source */ \"../node_modules/resume-app-data-source/src/app.js\");\n\n    angular.module('ResumeAppBackend', ['ngRoute', 'ngResource', 'restangular', 'ResumeAppDataSource'])\n        .config(['$locationProvider', '$routeProvider',\n            function($locationProvider, $routeProvider) {\n                $locationProvider.hashPrefix('!');\n                $routeProvider\n                    .when(\"/\", {\n                        redirectTo: '/resumes'\n                    })\n                    .when(\"/resumes\", {\n                        templateUrl: \"./resume/resumes-list.html\",\n                        controller: \"ResumesListController as resumesList\"\n                    })\n                    .when(\"/resumes/:id\", {\n                        templateUrl: \"./resume/edit-resume.html\",\n                        controller: \"EditResumeController as editResume\"\n                    })\n                    .otherwise({\n                        redirectTo: '/resumes'\n                    });\n            }\n        ]);\n\n    __webpack_require__(/*! ./resume */ \"./resume/index.js\");\n    __webpack_require__(/*! ./common/directives/edit-field */ \"./common/directives/edit-field/index.js\");\n    __webpack_require__(/*! ./common/directives/date */ \"./common/directives/date/index.js\");\n\n})();\n\n\n//# sourceURL=webpack:///./app.js?");
 
 /***/ }),
 
@@ -249,7 +293,7 @@ eval("(function() {\n    'use strict';\n    var angular = __webpack_require__(/*
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    var stringToDate = __webpack_require__(/*! ./string-to-date.directive */ \"./common/directives/date/string-to-date.directive.js\");\n\n    angular\n        .module('SampleApp')\n        .directive('stringToDate', stringToDate);\n})();\n\n\n//# sourceURL=webpack:///./common/directives/date/index.js?");
+eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    var stringToDate = __webpack_require__(/*! ./string-to-date.directive */ \"./common/directives/date/string-to-date.directive.js\");\n\n    angular\n        .module('ResumeAppBackend')\n        .directive('stringToDate', stringToDate);\n})();\n\n\n//# sourceURL=webpack:///./common/directives/date/index.js?");
 
 /***/ }),
 
@@ -282,40 +326,7 @@ eval("(function() {\n    'use strict'\n\n    /**\n     * Interesting how I could
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    var editFieldDirective = __webpack_require__(/*! ./edit-field.directive */ \"./common/directives/edit-field/edit-field.directive.js\");\n\n    angular\n        .module('SampleApp')\n        .directive('reEditField', editFieldDirective);\n\n})();\n\n\n//# sourceURL=webpack:///./common/directives/edit-field/index.js?");
-
-/***/ }),
-
-/***/ "./common/services/data-repository/index.js":
-/*!**************************************************!*\
-  !*** ./common/services/data-repository/index.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    __webpack_require__(/*! restangular */ \"../node_modules/restangular/dist/restangular.js\");\n    var config = __webpack_require__(/*! ./resume-data-source.config */ \"./common/services/data-repository/resume-data-source.config.js\");\n    var resumeDataSourceService = __webpack_require__(/*! ./resume-data-source.service */ \"./common/services/data-repository/resume-data-source.service.js\");\n\n    angular.module('SampleApp')\n        .constant('config', config)\n        .factory('resumeDataSourceService', resumeDataSourceService);\n\n    resumeDataSourceService.$inject = ['Restangular', 'config'];\n\n})();\n\n\n//# sourceURL=webpack:///./common/services/data-repository/index.js?");
-
-/***/ }),
-
-/***/ "./common/services/data-repository/resume-data-source.config.js":
-/*!**********************************************************************!*\
-  !*** ./common/services/data-repository/resume-data-source.config.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("(function() {\n    'use strict';\n\n    module.exports = {\n        resumeDataSource: {\n            baseUrl: \"http://localhost:3001\"\n        }\n    };\n\n})();\n\n\n//# sourceURL=webpack:///./common/services/data-repository/resume-data-source.config.js?");
-
-/***/ }),
-
-/***/ "./common/services/data-repository/resume-data-source.service.js":
-/*!***********************************************************************!*\
-  !*** ./common/services/data-repository/resume-data-source.service.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("(function() {\n  'use strict';\n\n    function resumeDataSourceService(Restangular, config) {\n\n        Restangular.setBaseUrl(config.resumeDataSource.baseUrl);\n\n        Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {\n            let extractedData = data;\n            if (operation === \"getList\" && what === \"resumes\") {\n                extractedData = data._embedded.resumes;\n            }\n            return extractedData;\n        });\n\n        // Using self link for self reference resources\n        Restangular.setRestangularFields({\n            selfLink: '_links.self.href'\n        });\n\n        var baseResumes = Restangular.all('resumes');\n\n        var service = {\n            getAllResumes: getAllResumes,\n            saveResume: saveResume,\n            createResume: createResume,\n            getResume: getResume\n        };\n\n        return service;\n\n        //\n\n        function getResume(id, successCallback) {\n            Restangular.one('resumes', id).get().then(successCallback, handleError)\n        }\n\n        function getAllResumes(successCallback) {\n            baseResumes.getList().then(successCallback, handleError)\n        }\n\n        function createResume(resume, successCallBack) {\n            baseResumes.post(resume).then(successCallBack, handleError);\n        }\n\n        function saveResume(resume, successCallback) {\n            resume.save().then(successCallback, handleError);\n        }\n\n        function handleError(response) {\n            console.log(\"Error with status code\", response.status);\n        }\n    }\n\n    module.exports = resumeDataSourceService;\n\n})();\n\n\n//# sourceURL=webpack:///./common/services/data-repository/resume-data-source.service.js?");
+eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    var editFieldDirective = __webpack_require__(/*! ./edit-field.directive */ \"./common/directives/edit-field/edit-field.directive.js\");\n\n    angular\n        .module('ResumeAppBackend')\n        .directive('reEditField', editFieldDirective);\n\n})();\n\n\n//# sourceURL=webpack:///./common/directives/edit-field/index.js?");
 
 /***/ }),
 
@@ -326,7 +337,7 @@ eval("(function() {\n  'use strict';\n\n    function resumeDataSourceService(Res
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    var urlUtils = __webpack_require__(/*! ./url-utils.service */ \"./common/services/url/url-utils.service.js\");\n\n    angular.module('SampleApp')\n        .factory('urlUtils', urlUtils);\n})();\n\n\n//# sourceURL=webpack:///./common/services/url/index.js?");
+eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    var urlUtils = __webpack_require__(/*! ./url-utils.service */ \"./common/services/url/url-utils.service.js\");\n\n    angular.module('ResumeAppBackend')\n        .factory('urlUtils', urlUtils);\n})();\n\n\n//# sourceURL=webpack:///./common/services/url/index.js?");
 
 /***/ }),
 
@@ -348,7 +359,7 @@ eval("(function() {\n    'use strict';\n\n    /*\n    function Url(url) {\n     
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("(function() {\n    'use strict'\n\n    function EditResumeController(resumeDataSourceService, $route, $filter, $location) {\n        var vm = this;\n        vm.resume = {};\n\n        function init() {\n            initResume();\n        }\n\n        init();\n\n        function initResume() {\n            resumeDataSourceService.getResume($route.current.params.id, function(resume) {\n                resume.date = new Date(resume.date);\n                vm.resume = resume;\n            })\n        }\n\n        vm.onSubmit = function(resume) {\n            var resumeToSend = angular.copy(resume);\n            resumeToSend.date = $filter('date')(resumeToSend.date, 'yyyy-MM-dd');\n            console.log(resumeToSend);\n            resumeDataSourceService.saveResume(resume,\n                function(response) {\n                    console.log(response);\n                    $location.path('/resumes');\n            });\n        }\n    };\n\n    module.exports = EditResumeController;\n})();\n\n\n//# sourceURL=webpack:///./resume/edit-resume.controller.js?");
+eval("(function() {\n    'use strict'\n\n    function EditResumeController(resumeDataSourceService, $route, $filter, $location) {\n        let vm = this;\n        vm.resume = {};\n\n        function init() {\n            initResume();\n        }\n\n        init();\n\n        function initResume() {\n            resumeDataSourceService.getResume($route.current.params.id, function(resume) {\n                resume.date = new Date(resume.date);\n                vm.resume = resume;\n            })\n        }\n\n        vm.onSubmit = function(resume) {\n            let resumeToSend = angular.copy(resume);\n            resumeToSend.date = $filter('date')(resumeToSend.date, 'yyyy-MM-dd');\n            console.log(resumeToSend);\n            resumeDataSourceService.saveResume(resume,\n                function(response) {\n                    console.log(response);\n                    $location.path('/resumes');\n            });\n        }\n    };\n\n    module.exports = EditResumeController;\n})();\n\n\n//# sourceURL=webpack:///./resume/edit-resume.controller.js?");
 
 /***/ }),
 
@@ -359,7 +370,7 @@ eval("(function() {\n    'use strict'\n\n    function EditResumeController(resum
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n\n    var editResumeController = __webpack_require__(/*! ./edit-resume.controller */ \"./resume/edit-resume.controller.js\");\n    var resumesListController = __webpack_require__(/*! ./resumes-list.controller */ \"./resume/resumes-list.controller.js\");\n\n    angular\n        .module('SampleApp')\n        .controller('EditResumeController', editResumeController)\n        .controller('ResumesListController', resumesListController);\n\n    editResumeController.$inject = ['resumeDataSourceService', '$route', '$filter', '$location'];\n    resumesListController.$inject = ['resumeDataSourceService', '$location', 'urlUtils'];\n})();\n\n\n//# sourceURL=webpack:///./resume/index.js?");
+eval("(function() {\n    'use strict';\n\n    var angular = __webpack_require__(/*! angular */ \"../node_modules/angular/index.js\");\n    __webpack_require__(/*! ../common/services/url */ \"./common/services/url/index.js\");\n\n    var editResumeController = __webpack_require__(/*! ./edit-resume.controller */ \"./resume/edit-resume.controller.js\");\n    var resumesListController = __webpack_require__(/*! ./resumes-list.controller */ \"./resume/resumes-list.controller.js\");\n\n    angular\n        .module('ResumeAppBackend')\n        .controller('EditResumeController', editResumeController)\n        .controller('ResumesListController', resumesListController);\n\n    editResumeController.$inject = ['resumeDataSourceService', '$route', '$filter', '$location'];\n    resumesListController.$inject = ['resumeDataSourceService', '$location', 'urlUtils'];\n})();\n\n\n//# sourceURL=webpack:///./resume/index.js?");
 
 /***/ }),
 

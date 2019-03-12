@@ -5,7 +5,7 @@
     var editFieldDirective = require('./edit-field.directive');
 
     angular
-        .module('SampleApp')
+        .module('ResumeAppBackend')
         .directive('reEditField', editFieldDirective);
 
 })();

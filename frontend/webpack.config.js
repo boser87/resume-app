@@ -9,13 +9,12 @@ module.exports = {
     },
     output: {
         path: __dirname + '/dist',
-        publicPath: '/css',
         filename: 'js/[name].js'
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 9000
+        port: 9001
     },
     plugins: [
         new HtmlWebPackPlugin({

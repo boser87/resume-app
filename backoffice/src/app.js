@@ -6,8 +6,9 @@
     require('angular-route');
     require('angular-resource');
     require('restangular');
+    require('resume-app-data-source');
 
-    angular.module('SampleApp', ['ngRoute', 'ngResource', 'restangular'])
+    angular.module('ResumeAppBackend', ['ngRoute', 'ngResource', 'restangular', 'ResumeAppDataSource'])
         .config(['$locationProvider', '$routeProvider',
             function($locationProvider, $routeProvider) {
                 $locationProvider.hashPrefix('!');
@@ -29,9 +30,7 @@
             }
         ]);
 
-    require('./common/services/url');
     require('./resume');
-    require('./common/services/data-repository');
     require('./common/directives/edit-field');
     require('./common/directives/date');
 

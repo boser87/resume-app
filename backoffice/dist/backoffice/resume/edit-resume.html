@@ -4,16 +4,17 @@
         <input class="form-control" type="text" ng-model="editResume.resume.name" value="" id="name">
     </div>
     <div class="form-group">
-        <label for="name">Label</label>
-        <input class="form-control" type="text" ng-model="editResume.resume.label" value="" id="description">
+        <label for="label">Label</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.label" value="Software Engineer" id="label">
     </div>
     <div class="form-group">
-        <label for="name">Email</label>
-        <input class="form-control" type="text" ng-model="editResume.resume.email" value="Company X" id="createdFor">
+        <label for="email">Email</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.details.basics.email" value="" id="email">
     </div>
     <div class="form-group">
-        <label for="date">Phone</label>
-        <input class="form-control" type="text" ng-model="editResume.resume.phone" value="+329 ..." id="date">
+        <label for="phone">Phone</label>
+        <input class="form-control" type="text" ng-model="editResume.resume.details.basics.phone" value="+329 ..."
+               id="phone">
     </div>
     <button ng-click="editResume.onSubmit(editResume.resume)" type="submit" class="btn btn-primary">Submit</button>
 </form>

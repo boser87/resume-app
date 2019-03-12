@@ -2,7 +2,7 @@
     'use strict'
 
     function EditResumeController(resumeDataSourceService, $route, $filter, $location) {
-        var vm = this;
+        let vm = this;
         vm.resume = {};
 
         function init() {
@@ -19,7 +19,7 @@
         }
 
         vm.onSubmit = function(resume) {
-            var resumeToSend = angular.copy(resume);
+            let resumeToSend = angular.copy(resume);
             resumeToSend.date = $filter('date')(resumeToSend.date, 'yyyy-MM-dd');
             console.log(resumeToSend);
             resumeDataSourceService.saveResume(resume,

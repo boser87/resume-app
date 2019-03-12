@@ -5,6 +5,6 @@
     var stringToDate = require('./string-to-date.directive');
 
     angular
-        .module('SampleApp')
+        .module('ResumeAppBackend')
         .directive('stringToDate', stringToDate);
 })();
